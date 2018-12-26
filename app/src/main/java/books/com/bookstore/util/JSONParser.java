@@ -47,7 +47,7 @@ public class JSONParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return(readStream(is));
+        return (readStream(is));
     }
 
     public static String postStream(String url, String data) {
