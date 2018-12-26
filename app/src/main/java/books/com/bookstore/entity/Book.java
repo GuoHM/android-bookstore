@@ -3,8 +3,10 @@ package books.com.bookstore.entity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
@@ -20,7 +22,7 @@ public class Book extends HashMap<String, String> implements Serializable {
         static String baseURL;
         static String imageURL;
         static {
-            baseURL = String.format("http://%s/Books/api/Book", host);
+            baseURL = String.format("http://%s/Books/api/Books", host);
             imageURL = String.format("http://%s/Books/images", host);
         }
 
@@ -35,9 +37,9 @@ public class Book extends HashMap<String, String> implements Serializable {
             put("publisher", publisher);
         }
 
-        public static List<Book> ReadBooks() {
+    public static List<Book> ReadBooksFromCategory(String category) {
             List<Book> list = new ArrayList<Book>();
-            JSONArray a = JSONParser.getJSONArrayFromUrl(baseURL + "/brief");
+        JSONArray a = JSONParser.getJSONArrayFromUrl(baseURL + "/Category/" + category);
             try {
                 for (int i =0; i<a.length(); i++) {
                     JSONObject b = a.getJSONObject(i);
