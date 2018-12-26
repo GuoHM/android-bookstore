@@ -27,11 +27,22 @@ public class Book extends HashMap<String, String> implements Serializable {
         imageURL = String.format("http://%s/Books/images", host);
     }
 
-    public Book(String bookID, String bookTitle, String author, String iSBN, String category, String quantity, String price, String publisher) {
+    public Book(HashMap<String, String> book){
+        put("bookID", book.get("bookID"));
+        put("bookTitle", book.get("bookTitle"));
+        put("author", book.get("author"));
+        put("iSBN", book.get("iSBN"));
+        put("category", book.get("category"));
+        put("quantity", book.get("quantity"));
+        put("price", book.get("price"));
+        put("publisher", book.get("publisher"));
+    }
+
+    public Book(String bookID, String bookTitle, String author, String ISBN, String category, String quantity, String price, String publisher) {
         put("bookID", bookID);
         put("bookTitle", bookTitle);
         put("author", author);
-        put("iSBN", iSBN);
+        put("ISBN", ISBN);
         put("category", category);
         put("quantity", quantity);
         put("price", price);
