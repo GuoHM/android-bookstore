@@ -2,8 +2,8 @@ package books.com.bookstore;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,10 +23,10 @@ public class CategoryActivity extends AppCompatActivity {
             protected List<Book> doInBackground(Void... params) {
                 return Book.ReadCategory();
             }
+
             @Override
             protected void onPostExecute(List<Book> result) {
-                books.com.bookstore.MyAdapter adapter = new books.com.bookstore.MyAdapter(getApplicationContext(),
-                        result);
+                books.com.bookstore.MyAdapter adapter = new books.com.bookstore.MyAdapter(getApplicationContext(), result);
                 ListView list = (ListView) findViewById(R.id.listView1);
                 list.setAdapter(adapter);
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

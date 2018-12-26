@@ -14,8 +14,8 @@ import books.com.bookstore.entity.Book;
 
 public class MyAdapter extends ArrayAdapter<Book> {
 
-    private List<Book> items;
     int resource;
+    private List<Book> items;
 
     public MyAdapter(Context context, List<Book> items) {
         super(context, R.layout.row1, items);
@@ -30,9 +30,9 @@ public class MyAdapter extends ArrayAdapter<Book> {
         final View v = inflater.inflate(resource, null);
         Book emp = items.get(position);
         if (emp != null) {
-            int []dest = new int[]{R.id.textView1};
-            String []src = new String[]{"Category"};
-            for (int n=0; n<dest.length; n++) {
+            int[] dest = new int[]{R.id.textView1};
+            String[] src = new String[]{"Category"};
+            for (int n = 0; n < dest.length; n++) {
                 TextView txt = v.findViewById(dest[n]);
                 txt.setText(emp.get(src[n]));
             }

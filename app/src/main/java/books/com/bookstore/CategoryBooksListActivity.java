@@ -23,9 +23,10 @@ public class CategoryBooksListActivity extends Activity {
             protected List<Book> doInBackground(String... params) {
                 return Book.ListBooksCategory(params[0]);
             }
+
             @Override
             protected void onPostExecute(List<Book> result) {
-                books.com.bookstore.MyAdapter adapter = new books.com.bookstore.MyAdapter(getApplicationContext(),result);
+                books.com.bookstore.MyAdapter adapter = new books.com.bookstore.MyAdapter(getApplicationContext(), result);
                 ListView list = (ListView) findViewById(R.id.listView1);
                 list.setAdapter(adapter);
             }

@@ -73,7 +73,7 @@ public class Book extends HashMap<String, String> implements Serializable {
 
     public static List<Book> ReadCategory() {
         ArrayList<Book> list = new ArrayList<Book>();
-        JSONArray a = JSONParser.getJSONArrayFromUrl(baseURL+"/Category");
+        JSONArray a = JSONParser.getJSONArrayFromUrl(baseURL + "/Category");
         try {
             for (int i = 0; i < a.length(); i++) {
                 JSONObject b = a.getJSONObject(i);
