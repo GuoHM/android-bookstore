@@ -3,16 +3,16 @@ package books.com.bookstore.entity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-import books.com.bookstore.util.*;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import books.com.bookstore.util.JSONParser;
 
 public class Book extends HashMap<String, String>{
         static String host = "172.23.226.30";
@@ -32,7 +32,6 @@ public class Book extends HashMap<String, String>{
             put("quantity", quantity);
             put("price", price);
             put("publisher", publisher);
-
         }
 
         public static List<Book> ReadBooks() {
@@ -42,7 +41,13 @@ public class Book extends HashMap<String, String>{
                 for (int i =0; i<a.length(); i++) {
                     JSONObject b = a.getJSONObject(i);
                     list.add(new Book(b.getString("bookID"),
-                            b.getString("bookTitle"),b.getString("author"),b.getString("iSBN"),b.getString("category"),b.getString("quantity"),b.getString("price"),b.getString("publisher")));
+                            b.getString("bookTitle"),
+                            b.getString("author"),
+                            b.getString("iSBN"),
+                            b.getString("category"),
+                            b.getString("quantity"),
+                            b.getString("price"),
+                            b.getString("publisher")));
                 }
             } catch (Exception e) {
                 Log.e("Book", "JSONArray error");
@@ -66,7 +71,7 @@ public class Book extends HashMap<String, String>{
             return(null);
         }
 
-        public static void saveBook(Book book, boolean isNew) {
+    public static void saveBook(Book book) {
             JSONObject jemp = new JSONObject();
             try {
                 jemp.put("bookID", book.get("bookID"));
@@ -78,11 +83,9 @@ public class Book extends HashMap<String, String>{
                 jemp.put("price", book.get("price"));
                 jemp.put("publisher", book.get("publisher"));
             } catch (Exception e) {
+                Log.e("Book.saveBook()", "Bitmap error");
             }
-            if (isNew)
-                JSONParser.postStream(baseURL+"/add", jemp.toString());
-            else
-                JSONParser.postStream(baseURL+"/update", jemp.toString());
+        JSONParser.postStream(baseURL + "/update", jemp.toString());
         }
     }
 
