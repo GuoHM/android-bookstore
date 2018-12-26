@@ -6,6 +6,7 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 
 import books.com.bookstore.util.JSONParser;
 
-public class Book extends HashMap<String, String>{
+public class Book extends HashMap<String, String> implements Serializable {
         static String host = "172.23.226.30";
         static String baseURL;
         static String imageURL;
