@@ -71,7 +71,7 @@ public class Book extends HashMap<String, String> implements Serializable {
             jemp.put("bookID", book.get("bookID"));
             jemp.put("bookTitle", book.get("bookTitle"));
             jemp.put("author", book.get("author"));
-            jemp.put("iSBN", book.get("iSBN"));
+            jemp.put("ISBN", book.get("ISBN"));
             jemp.put("category", book.get("category"));
             jemp.put("quantity", book.get("quantity"));
             jemp.put("price", book.get("price"));
@@ -91,7 +91,7 @@ public class Book extends HashMap<String, String> implements Serializable {
                 list.add(new Book(b.getString("bookID"),
                         b.getString("bookTitle"),
                         b.getString("author"),
-                        b.getString("iSBN"),
+                        b.getString("ISBN"),
                         b.getString("category"),
                         b.getString("quantity"),
                         b.getString("price"),
@@ -112,7 +112,7 @@ public class Book extends HashMap<String, String> implements Serializable {
                 list.add(new Book(b.getString("bookID"),
                         b.getString("bookTitle"),
                         b.getString("author"),
-                        b.getString("iSBN"),
+                        b.getString("ISBN"),
                         b.getString("category"),
                         b.getString("quantity"),
                         b.getString("price"),
