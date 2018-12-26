@@ -1,0 +1,89 @@
+package books.com.bookstore.entity;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import books.com.bookstore.util.*;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class Book extends HashMap<String, String>{
+        static String host = "172.23.226.30";
+        static String baseURL;
+        static String imageURL;
+        static {
+            baseURL = String.format("http://%s/Books/api/Book", host);
+            imageURL = String.format("http://%s/Books/images", host);
+        }
+
+        public Book(String bookID, String bookTitle, String author, String iSBN, String category, String quantity, String price, String publisher) {
+            put("bookID", bookID);
+            put("bookTitle", bookTitle);
+            put("author", author);
+            put("iSBN", iSBN);
+            put("category", category);
+            put("quantity", quantity);
+            put("price", price);
+            put("publisher", publisher);
+
+        }
+
+        public static List<Book> ReadBooks() {
+            List<Book> list = new ArrayList<Book>();
+            JSONArray a = JSONParser.getJSONArrayFromUrl(baseURL + "/brief");
+            try {
+                for (int i =0; i<a.length(); i++) {
+                    JSONObject b = a.getJSONObject(i);
+                    list.add(new Book(b.getString("bookID"),
+                            b.getString("bookTitle"),b.getString("author"),b.getString("iSBN"),b.getString("category"),b.getString("quantity"),b.getString("price"),b.getString("publisher")));
+                }
+            } catch (Exception e) {
+                Log.e("Book", "JSONArray error");
+            }
+            return(list);
+        }
+
+        public static Bitmap getPhoto(String id, boolean thumbnail) {
+            try {
+                URL url = new URL(thumbnail ?
+                        String.format("%s/%s-s.jpg",imageURL, id) :
+                        String.format("%s/%s.jpg",imageURL, id));
+                URLConnection conn = url.openConnection();
+                InputStream ins = conn.getInputStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(ins);
+                ins.close();
+                return bitmap;
+            } catch (Exception e) {
+                Log.e("Book.getPhoto()", "Bitmap error");
+            }
+            return(null);
+        }
+
+        public static void saveBook(Book book, boolean isNew) {
+            JSONObject jemp = new JSONObject();
+            try {
+                jemp.put("bookID", book.get("bookID"));
+                jemp.put("bookTitle", book.get("bookTitle"));
+                jemp.put("author", book.get("author"));
+                jemp.put("iSBN", book.get("iSBN"));
+                jemp.put("category", book.get("category"));
+                jemp.put("quantity", book.get("quantity"));
+                jemp.put("price", book.get("price"));
+                jemp.put("publisher", book.get("publisher"));
+            } catch (Exception e) {
+            }
+            if (isNew)
+                JSONParser.postStream(baseURL+"/add", jemp.toString());
+            else
+                JSONParser.postStream(baseURL+"/update", jemp.toString());
+        }
+    }
+
+
