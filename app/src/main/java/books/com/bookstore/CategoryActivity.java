@@ -31,7 +31,7 @@ public class CategoryActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Books selected = (Books) parent.getAdapter().getItem(position);
-                        Intent intent = new Intent(getApplicationContext(), CategoryBooksList.class);
+                        Intent intent = new Intent(getApplicationContext(), CategoryBooksListActivity.class);
                         intent.putExtra("id", selected.get("Category"));
                         startActivity(intent);
                     }

@@ -7,7 +7,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
-public class CategoryBooksList extends Activity {
+public class CategoryBooksListActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
