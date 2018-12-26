@@ -7,6 +7,8 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import books.com.bookstore.entity.Book;
+
 public class CategoryBooksListActivity extends Activity {
 
     @Override
@@ -16,15 +18,14 @@ public class CategoryBooksListActivity extends Activity {
         Bundle Intent = getIntent().getExtras();
         String Category = Intent.getString("id");
 
-        new AsyncTask<String, Void, List<Books>>() {
+        new AsyncTask<String, Void, List<Book>>() {
             @Override
-            protected List<Books> doInBackground(String... params) {
-                return Books.ListBooksCategory(params[0]);
+            protected List<Book> doInBackground(String... params) {
+                return Book.ListBooksCategory(params[0]);
             }
             @Override
-            protected void onPostExecute(List<Books> result) {
-                books.com.bookstore.MyAdapter adapter = new books.com.bookstore.MyAdapter(getApplicationContext(),
-                        result);
+            protected void onPostExecute(List<Book> result) {
+                books.com.bookstore.MyAdapter adapter = new books.com.bookstore.MyAdapter(getApplicationContext(),result);
                 ListView list = (ListView) findViewById(R.id.listView1);
                 list.setAdapter(adapter);
             }

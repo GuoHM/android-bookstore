@@ -37,7 +37,7 @@ public class Book extends HashMap<String, String> implements Serializable {
         put("price", price);
         put("publisher", publisher);
     }
-    
+
     public static Bitmap getPhoto(String id, boolean thumbnail) {
         try {
             URL url = new URL(thumbnail ?

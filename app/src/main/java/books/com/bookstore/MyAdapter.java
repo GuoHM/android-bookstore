@@ -10,12 +10,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class MyAdapter extends ArrayAdapter<Books> {
+import books.com.bookstore.entity.Book;
 
-    private List<Books> items;
+public class MyAdapter extends ArrayAdapter<Book> {
+
+    private List<Book> items;
     int resource;
 
-    public MyAdapter(Context context, List<Books> items) {
+    public MyAdapter(Context context, List<Book> items) {
         super(context, R.layout.row1, items);
         this.resource = R.layout.row1;
         this.items = items;
@@ -26,7 +28,7 @@ public class MyAdapter extends ArrayAdapter<Books> {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         final View v = inflater.inflate(resource, null);
-        Books emp = items.get(position);
+        Book emp = items.get(position);
         if (emp != null) {
             int []dest = new int[]{R.id.textView1};
             String []src = new String[]{"Category"};
