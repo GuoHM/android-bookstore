@@ -37,28 +37,7 @@ public class Book extends HashMap<String, String> implements Serializable {
         put("price", price);
         put("publisher", publisher);
     }
-
-    public static List<Book> ReadBooksFromCategory(String category) {
-        List<Book> list = new ArrayList<Book>();
-        JSONArray a = JSONParser.getJSONArrayFromUrl(baseURL + "/Category/" + category);
-        try {
-            for (int i = 0; i < a.length(); i++) {
-                JSONObject b = a.getJSONObject(i);
-                list.add(new Book(b.getString("bookID"),
-                        b.getString("bookTitle"),
-                        b.getString("author"),
-                        b.getString("iSBN"),
-                        b.getString("category"),
-                        b.getString("quantity"),
-                        b.getString("price"),
-                        b.getString("publisher")));
-            }
-        } catch (Exception e) {
-            Log.e("Book", "JSONArray error");
-        }
-        return (list);
-    }
-
+    
     public static Bitmap getPhoto(String id, boolean thumbnail) {
         try {
             URL url = new URL(thumbnail ?
@@ -90,6 +69,48 @@ public class Book extends HashMap<String, String> implements Serializable {
             Log.e("Book.saveBook()", "Bitmap error");
         }
         JSONParser.postStream(baseURL + "/update", jemp.toString());
+    }
+
+    public static List<Book> ReadCategory() {
+        ArrayList<Book> list = new ArrayList<Book>();
+        JSONArray a = JSONParser.getJSONArrayFromUrl(baseURL+"/Category");
+        try {
+            for (int i = 0; i < a.length(); i++) {
+                JSONObject b = a.getJSONObject(i);
+                list.add(new Book(b.getString("bookID"),
+                        b.getString("bookTitle"),
+                        b.getString("author"),
+                        b.getString("iSBN"),
+                        b.getString("category"),
+                        b.getString("quantity"),
+                        b.getString("price"),
+                        b.getString("publisher")));
+            }
+        } catch (Exception e) {
+            Log.e("Employee", "JSONArray error");
+        }
+        return (list);
+    }
+
+    public static List<Book> ListBooksCategory(String id) {
+        ArrayList<Book> list = new ArrayList<Book>();
+        JSONArray a = JSONParser.getJSONArrayFromUrl(baseURL + "/" + id);
+        try {
+            for (int i = 0; i < a.length(); i++) {
+                JSONObject b = a.getJSONObject(i);
+                list.add(new Book(b.getString("bookID"),
+                        b.getString("bookTitle"),
+                        b.getString("author"),
+                        b.getString("iSBN"),
+                        b.getString("category"),
+                        b.getString("quantity"),
+                        b.getString("price"),
+                        b.getString("publisher")));
+            }
+        } catch (Exception e) {
+            Log.e("Books", "JSONArray error");
+        }
+        return (list);
     }
 }
 
