@@ -1,8 +1,140 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UpdateActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/uptextView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/BookID" />
+
+            <EditText
+                android:id="@+id/upeditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/uptextView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/BookTitle" />
+
+            <EditText
+                android:id="@+id/upeditText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/uptextView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Author" />
+
+            <EditText
+                android:id="@+id/upeditText3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/uptextView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ISBN" />
+
+            <EditText
+                android:id="@+id/upeditText4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/uptextView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Category" />
+
+            <EditText
+                android:id="@+id/upeditText5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/uptextView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/quantity" />
+
+            <EditText
+                android:id="@+id/upeditText6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/uptextView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/price" />
+
+            <EditText
+                android:id="@+id/upeditText7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/uptextView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/publisher" />
+
+
+            <EditText
+                android:id="@+id/upeditText8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <Button
+                android:id="@+id/upbutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Update" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -18,7 +18,7 @@ import java.util.List;
 import books.com.bookstore.util.JSONParser;
 
 public class Book extends HashMap<String, String> implements Serializable {
-    static String host = "172.23.226.30";
+    static String host = "172.17.194.124";
     static String baseURL;
     static String imageURL;
 
@@ -28,25 +28,25 @@ public class Book extends HashMap<String, String> implements Serializable {
     }
 
     public Book(HashMap<String, String> book){
-        put("bookID", book.get("bookID"));
-        put("bookTitle", book.get("bookTitle"));
-        put("author", book.get("author"));
-        put("iSBN", book.get("iSBN"));
-        put("category", book.get("category"));
-        put("quantity", book.get("quantity"));
-        put("price", book.get("price"));
-        put("publisher", book.get("publisher"));
+        put("BookID", book.get("BookID"));
+        put("BookTitle", book.get("BookTitle"));
+        put("Author", book.get("Author"));
+        put("ISBN", book.get("ISBN"));
+        put("Category", book.get("Category"));
+        put("Quantity", book.get("Quantity"));
+        put("Price", book.get("Price"));
+        put("Publisher", book.get("Publisher"));
     }
 
     public Book(String bookID, String bookTitle, String author, String ISBN, String category, String quantity, String price, String publisher) {
-        put("bookID", bookID);
-        put("bookTitle", bookTitle);
-        put("author", author);
+        put("BookID", bookID);
+        put("BookTitle", bookTitle);
+        put("Author", author);
         put("ISBN", ISBN);
-        put("category", category);
-        put("quantity", quantity);
-        put("price", price);
-        put("publisher", publisher);
+        put("Category", category);
+        put("Quantity", quantity);
+        put("Price", price);
+        put("Publisher", publisher);
     }
 
     public static Bitmap getPhoto(String id, boolean thumbnail) {
@@ -68,14 +68,14 @@ public class Book extends HashMap<String, String> implements Serializable {
     public static void saveBook(Book book) {
         JSONObject jemp = new JSONObject();
         try {
-            jemp.put("bookID", book.get("bookID"));
-            jemp.put("bookTitle", book.get("bookTitle"));
-            jemp.put("author", book.get("author"));
-            jemp.put("iSBN", book.get("iSBN"));
-            jemp.put("category", book.get("category"));
-            jemp.put("quantity", book.get("quantity"));
-            jemp.put("price", book.get("price"));
-            jemp.put("publisher", book.get("publisher"));
+            jemp.put("BookID", book.get("BookID"));
+            jemp.put("BookTitle", book.get("BookTitle"));
+            jemp.put("Author", book.get("Author"));
+            jemp.put("ISBN", book.get("ISBN"));
+            jemp.put("Category", book.get("Category"));
+            jemp.put("Quantity", book.get("Quantity"));
+            jemp.put("Price", book.get("Price"));
+            jemp.put("Publisher", book.get("Publisher"));
         } catch (Exception e) {
             Log.e("Book.saveBook()", "Bitmap error");
         }
@@ -88,19 +88,40 @@ public class Book extends HashMap<String, String> implements Serializable {
         try {
             for (int i = 0; i < a.length(); i++) {
                 JSONObject b = a.getJSONObject(i);
-                list.add(new Book(b.getString("bookID"),
-                        b.getString("bookTitle"),
-                        b.getString("author"),
-                        b.getString("iSBN"),
-                        b.getString("category"),
-                        b.getString("quantity"),
-                        b.getString("price"),
-                        b.getString("publisher")));
+                list.add(new Book("",
+                        "",
+                        "",
+                        "",
+                        b.getString("Category"),
+                        "",
+                        "",
+                        ""));
             }
         } catch (Exception e) {
             Log.e("Employee", "JSONArray error");
         }
         return (list);
+    }
+
+    public static Book DisplayBook(String id) {
+        try {
+            JSONObject b = JSONParser.getJSONFromUrl(baseURL + "/Details/" + id);
+            //Book e = new Book(String.format("%f", a.getInt("BookID")), a.getString("BookTitle"),
+            //      a.getString("Author"), a.getString("ISBN"), a.getString("Category"), String.format("%f", a.getInt("Quantity")), a.getString("Publisher"), String.format("%,.2f", a.getDouble("Price")));
+
+            Book e = new Book(b.getString("BookID"),
+                    b.getString("BookTitle"),
+                    b.getString("Author"),
+                    b.getString("ISBN"),
+                    b.getString("Category"),
+                    b.getString("Quantity"),
+                    b.getString("Price"),
+                    b.getString("Publisher"));
+            return e;
+        } catch (Exception e) {
+            Log.e("Books", "JSONArray error");
+        }
+        return (null);
     }
 
     public static List<Book> ListBooksCategory(String id) {
@@ -109,14 +130,15 @@ public class Book extends HashMap<String, String> implements Serializable {
         try {
             for (int i = 0; i < a.length(); i++) {
                 JSONObject b = a.getJSONObject(i);
-                list.add(new Book(b.getString("bookID"),
-                        b.getString("bookTitle"),
-                        b.getString("author"),
-                        b.getString("iSBN"),
-                        b.getString("category"),
-                        b.getString("quantity"),
-                        b.getString("price"),
-                        b.getString("publisher")));
+                String bookId = "" + b.get("BookId");
+                list.add(new Book(bookId,
+                        b.getString("Title"),
+                        "",
+                        "",
+                        b.getString("Category"),
+                        "",
+                        "",
+                        ""));
             }
         } catch (Exception e) {
             Log.e("Books", "JSONArray error");

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BookStore</string>
+    <string name="BookID">BookID</string>
+    <string name="BookTitle">Book Title</string>
+    <string name="Author">Author</string>
+    <string name="ISBN">ISBN</string>
+    <string name="Category">Category</string>
+    <string name="quantity">Quantity</string>
+    <string name="price">Price</string>
+    <string name="publisher">Publisher</string>
 </resources>
